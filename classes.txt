@@ -75,6 +75,6 @@ book
 clock
 vase
 scissors
-teddy bear
+teddybear
 hair drier
 toothbrush
