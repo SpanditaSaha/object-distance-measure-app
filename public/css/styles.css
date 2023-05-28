@@ -1,0 +1,50 @@
+
+body, html{
+    height: 100%;
+    margin: 0;
+}
+
+
+.main{
+    background-image: url("../main-image.jpg");
+    height: 100%; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container{
+    height:600px;
+    background-image: url("../second.jpeg");
+    font-size:36px
+}
+
+.container h1{
+    margin: 0;
+    text-align: center;
+    color: aliceblue;
+    padding: 2rem;
+}
+
+.container a{
+    text-align: center;
+    text-decoration: none;
+    color: aliceblue;
+    background: transparent;
+    border: 1px solid aliceblue;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-left: 685px;
+}
+
+.container a:hover{
+    text-decoration: none;
+    color: aliceblue;
+    border: 1px solid aliceblue;
+    border-radius: 1rem;
+    background: transparent;
+    box-shadow: 0 0 1rem aliceblue;
+    transition: 0.5s ease;
+}
+

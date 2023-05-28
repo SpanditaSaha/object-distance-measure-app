@@ -173,6 +173,8 @@ while True:
     key = cv.waitKey(1)
     if key ==ord('q'):
         break
+    if cv.getWindowProperty('frame', cv.WND_PROP_VISIBLE) < 1:
+        break
 cv.destroyAllWindows()
 cap.release()
 
