@@ -6,7 +6,8 @@
     "express.js": "^1.0.0",
     "nodemon": "^2.0.22",
     "python-shell": "^5.0.0",
-    "requests": "^0.3.0"
+    "requests": "^0.3.0",
+    "utill": "^0.1.3"
   },
   "name": "yolov4-detector-and-distance-estimator",
   "description": "*Find distance from object to camera using YoloV4 object detector, here we will be using single camera :camera:, detailed explanation of distance estimation is available another repository* [**Face detection and Distance Estimation using single camera**](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera)",
