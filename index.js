@@ -1,60 +1,37 @@
-const express=require('express');
-const bodyParser = require("body-parser");
-const ejs = require("ejs");
-const app=express();
-
-app.use(express.static("public"));
-app.set('view engine','ejs');
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
- 
+const express = require('express');
+const bodyParser = require('body-parser');
+const ejs = require('ejs');
 const { promisify } = require('util');
-//Import PythonShell module.
-const {PythonShell} =require('python-shell');
- 
-//Router to handle the incoming request.
-app.get("/", (req, res, next)=>{
-    res.render("home");  
+const { PythonShell } = require('python-shell');
+
+const app = express();
+
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+  res.render('home');
 });
 
-app.get("/measure", async function(req,res)
-{
-      //Here are the option object in which arguments can be passed for the python_test.js.
-      let options = {
-        mode: 'text',
-        pythonOptions: ['-u'], // get print results in real-time
-          //scriptPath: 'path/to/my/scripts', //If you are having python_test.py script in same folder, then it's optional.
-        args: ['spandita'] //An argument which can be accessed in the script using sys.argv[1]
-    };
+app.get('/measure', async (req, res) => {
+  const options = {
+    mode: 'text',
+    pythonOptions: ['-u'],
+    args: ['spandita']
+  };
 
+  const runPythonScript = promisify(PythonShell.run);
 
+  try {
+    const result = await runPythonScript('DistanceEstimation.py', options);
+    console.log('result:', result.toString());
+    res.send(result.toString());
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('An error occurred.');
+  }
+});
 
-    const runPythonScript = promisify(PythonShell.run);
-
-      async function executePythonScript() {
-        try {
-          const result = await runPythonScript('DistanceEstimation.py', options);
-          console.log('result: ', result.toString());
-          res.send(result.toString());
-        } catch (err) {
-          console.error(err);
-          res.status(500).send('An error occurred.');
-        }
-      }
-
-      executePythonScript();
-
-   
-    // PythonShell.run('DistanceEstimation.py', options, async function (err, result){
-    //           if (err) throw err;
-    //           // result is an array consisting of messages collected
-    //           //during execution of script.
-    //           console.log('result: ', result.toString());
-    //           res.send(result.toString())
-    //     });
-})
- 
-//Creates the server on default port 8000 and can be accessed through localhost:8000
-const port=8000;
-app.listen(port, ()=>console.log(`Server connected to ${port}`));
+const port = 8000;
+app.listen(port, () => console.log(`Server connected to ${port}`));
