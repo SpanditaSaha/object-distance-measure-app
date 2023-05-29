@@ -1,8 +1,6 @@
 const express = require('express');
-const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
-const router = express.router();
 const { promisify } = require('util');
 const { PythonShell } = require('python-shell');
 
@@ -12,11 +10,11 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.render('home');
 });
 
-router.get('/measure', async (req, res) => {
+app.get('/measure', async (req, res) => {
   const options = {
     mode: 'text',
     pythonOptions: ['-u'],
@@ -37,12 +35,9 @@ router.get('/measure', async (req, res) => {
   
 });
 
-// const port = 8000;
-// app.listen(port, () => console.log(`Server connected to ${port}`));
+const port = 8000;
+app.listen(port, () => console.log(`Server connected to ${port}`));
 
-process.on("unhandledRejection", (err) => {
-  console.log(err.name, err.message);
-})
-
-app.use('/.netlify/functions/api', router);
-module.exports.handler = serverless(app);
+// process.on("unhandledRejection", (err) => {
+//   console.log(err.name, err.message);
+// })
