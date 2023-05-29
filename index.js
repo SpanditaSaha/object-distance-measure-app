@@ -38,6 +38,6 @@ app.get('/measure', async (req, res) => {
 const port = 8000;
 app.listen(port, () => console.log(`Server connected to ${port}`));
 
-// process.on("unhandledRejection", (err) => {
-//   console.log(err.name, err.message);
-// })
+process.on("unhandledRejection", (err) => {
+  console.log(err.name, err.message);
+})
