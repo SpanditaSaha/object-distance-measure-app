@@ -168,7 +168,7 @@ if __name__ == '__main__':
     focal_person = focal_length_finder(KNOWN_DISTANCE, PERSON_WIDTH, person_width_in_rf)
     focal_mobile = focal_length_finder(KNOWN_DISTANCE, MOBILE_WIDTH, mobile_width_in_rf)
 
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(debug=True)
 
 
 
