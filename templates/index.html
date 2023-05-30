@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Object Detection</title>
+    <style>
+        #video-container {
+            display: flex;
+            justify-content: center;
+        }
+        #video-stream {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Object Detection</h1>
+    <div id="video-container">
+        <img id="video-stream" src="{{ url_for('video_feed') }}" width="640" height="480">
+    </div>
+
+    <script>
+        window.onload = function() {
+            var video = document.getElementById('video-stream');
+            var interval = 100; // Refresh interval in milliseconds
+
+            // Continuously update the video stream
+            setInterval(function() {
+                video.src = "{{ url_for('video_feed') }}?" + new Date().getTime();
+            }, interval);
+        };
+    </script>
+</body>
+</html>

@@ -1,5 +1,8 @@
 *.mp4
-node_modules
-
-# Local Netlify folder
-.netlify
+.env
+.DS_Store
+.venv
+.vscode
+__pycache__
+*.pyc
+.vscode
